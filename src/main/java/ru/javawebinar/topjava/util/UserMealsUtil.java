@@ -49,11 +49,12 @@ public class UserMealsUtil {
 
             int totalCaloriesPerDay = entry.getValue().stream().mapToInt(x -> x.getCalories()).sum();
 
+            //пункт 5 замечаний к HW0: map не заполняет resultList,заменил на forEach
             entry.getValue().stream()
                     .filter(x -> x.getDateTime().toLocalTime().compareTo(startTime) >= 0 && x.getDateTime().toLocalTime().compareTo(endTime) <= 0)
                     .forEach(x -> resultList.add(new UserMealWithExceed(x.getDateTime(), x.getDescription(),
                             x.getCalories(), totalCaloriesPerDay > caloriesPerDay)));
-            //пункт 5 замечаний к HW0: map не заполняет resultList,заменил на forEach
+
         }
 
         return resultList;
