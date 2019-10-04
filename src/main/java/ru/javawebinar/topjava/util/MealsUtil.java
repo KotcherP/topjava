@@ -32,15 +32,15 @@ public class MealsUtil {
         LocalTime endTime = LocalTime.of(12, 0);
 
         List<MealTo> mealsTo = getFiltered(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY);
-        mealsTo.forEach(System.out::println);
+ //       mealsTo.forEach(System.out::println);
 
-        System.out.println(getFilteredByCycle(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
-        System.out.println(getFilteredByRecursion(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
+//        System.out.println(getFilteredByCycle(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
+//        System.out.println(getFilteredByRecursion(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
 //        System.out.println(getFilteredByAtomic(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
 //        System.out.println(getFilteredByClosure(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
-        System.out.println(getFilteredByExecutor(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
+//        System.out.println(getFilteredByExecutor(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
         System.out.println(getFilteredByFlatMap(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
-        System.out.println(getFilteredByCollector(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
+ //       System.out.println(getFilteredByCollector(meals, startTime, endTime, DEFAULT_CALORIES_PER_DAY));
     }
 
     public static List<MealTo> getFiltered(List<Meal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
