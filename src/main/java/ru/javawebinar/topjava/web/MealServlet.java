@@ -26,7 +26,7 @@ public class MealServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        // log.debug("redirect to meals");
 
-        List<Meal> meals = MealsDao.getAllMeal();
+        List<Meal> meals = MealsDao.getMeals();
         List<MealTo> mealsTo = MealsUtil.getFiltered(meals, LocalTime.MIN,LocalTime.MAX,CALORIES_PER_DAY);
 
         request.setAttribute("mealsTo",mealsTo);

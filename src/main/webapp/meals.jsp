@@ -13,16 +13,14 @@
     <th>Date time</th>
     <th>Description</th>
     <th>Calories</th>
-    <th>Excess</th>
     <c:forEach var="mealToEntry" items="${mealsTo}">
         <tr style="background-color:${mealToEntry.excess ? 'indianRed' : 'paleGreen'}">
             <td>
                 <fmt:parseDate value="${mealToEntry.dateTime}" pattern="yyyy-MM-dd'T'HH:mm" var="dateTimeFmt"/>
                 <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${dateTimeFmt}"/>
             </td>
-            <td><c:out value="${mealToEntry.description}"/></td>
-            <td><c:out value="${mealToEntry.calories}"/></td>
-            <td><c:out value="${mealToEntry.excess}"/></td>
+            <td>${mealToEntry.description}</td>
+            <td>${mealToEntry.calories}</td>
         </tr>
     </c:forEach>
 </table>
