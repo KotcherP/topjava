@@ -17,12 +17,8 @@
     <label for="calories">Calories</label>
     <input type="number" name="calories" id="calories" value="${mealEdit.calories}">
 
-    <c:if test="${empty mealEdit.id}">
-        <input type="submit" value="Add">
-    </c:if>
-    <c:if test="${!empty mealEdit.id}">
-        <input type="submit" value="Edit">
-    </c:if>
+    <input type="submit" value="${empty mealEdit.id ? "Add" : "Edit" }">
+
 </form>
 </body>
 </html>

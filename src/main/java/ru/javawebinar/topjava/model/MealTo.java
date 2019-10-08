@@ -11,11 +11,11 @@ public class MealTo {
 
     private long id;
 
-//    private final Supplier<Boolean> excess;
+    //    private final Supplier<Boolean> excess;
 //    private final AtomicBoolean excess;
     private final boolean excess;
 
-    public MealTo(long id,LocalDateTime dateTime, String description, int calories, boolean excess) {
+    public MealTo(long id, LocalDateTime dateTime, String description, int calories, boolean excess) {
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;

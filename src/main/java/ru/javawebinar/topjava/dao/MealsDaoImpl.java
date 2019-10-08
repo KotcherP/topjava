@@ -10,23 +10,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class MealsDaoImpl implements MealsDao {
 
-    private static AtomicLong id = new AtomicLong(0);
-    private static Map<Long,Meal> meals = new ConcurrentHashMap<>();
-
-    static {
-        Meal meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500);
-        meals.put(meal.getId(),meal);
-        meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 30, 13, 0), "Обед", 1000);
-        meals.put(meal.getId(),meal);
-        meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 30, 20, 0), "Ужин", 500);
-        meals.put(meal.getId(),meal);
-        meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 31, 10, 0), "Завтрак", 1000);
-        meals.put(meal.getId(),meal);
-        meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 31, 13, 0), "Обед", 500);
-        meals.put(meal.getId(),meal);
-        meal = new Meal(id.getAndIncrement(),LocalDateTime.of(2015, Month.MAY, 31, 20, 0), "Ужин", 510);
-        meals.put(meal.getId(),meal);
-    }
+    private AtomicLong id = new AtomicLong(0);
+    private Map<Long, Meal> meals = new ConcurrentHashMap<>();
 
     @Override
     public List<Meal> readAll() {
@@ -34,14 +19,16 @@ public class MealsDaoImpl implements MealsDao {
     }
 
     @Override
-    public void add(Meal meal) {
+    public Meal add(Meal meal) {
         meal.setId(id.getAndIncrement());
-        meals.put(meal.getId(),meal);
+        meals.put(meal.getId(), meal);
+
+        return meal;
     }
 
     @Override
     public void edit(Meal meal) {
-        meals.put(meal.getId(),meal);
+        meals.put(meal.getId(), meal);
     }
 
     @Override

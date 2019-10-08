@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface MealsDao {
     List<Meal> readAll();
-    void add(Meal meal);
+
+    Meal add(Meal meal);
+
     void edit(Meal meal);
+
     void delete(long id);
+
     Meal getById(long id);
 }
