@@ -9,7 +9,7 @@ public interface MealsDao {
 
     Meal add(Meal meal);
 
-    void edit(Meal meal);
+    Meal edit(Meal meal);
 
     void delete(long id);
 

@@ -3,7 +3,7 @@ package ru.javawebinar.topjava.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.javawebinar.topjava.dao.MealsDao;
-import ru.javawebinar.topjava.dao.MealsDaoImpl;
+import ru.javawebinar.topjava.dao.MealsDaoMemory;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -28,7 +28,7 @@ public class MealServlet extends HttpServlet {
     private static final int CALORIES_PER_DAY = 2000;
 
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
-    private final MealsDao mealsDao = new MealsDaoImpl() {{
+    private final MealsDao mealsDao = new MealsDaoMemory() {{
         add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500));
         add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 13, 0), "Обед", 1000));
         add(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 18, 0), "Ужин", 500));
@@ -56,7 +56,8 @@ public class MealServlet extends HttpServlet {
                 case "delete":
                     mealsDao.delete(Long.parseLong(request.getParameter("id")));
                     log.debug("doGet: delete from meals");
-                    break;
+                    response.sendRedirect(request.getContextPath() + "/meals");
+                    return;
             }
         }
 

@@ -14,13 +14,14 @@ public class Meal {
     private long id;
 
     public Meal(LocalDateTime dateTime, String description, int calories) {
-        this.dateTime = dateTime;
-        this.description = description;
-        this.calories = calories;
+        this(0, dateTime, description, calories);
+//
     }
 
     public Meal(long id, LocalDateTime dateTime, String description, int calories) {
-        this(dateTime, description, calories);
+        this.dateTime = dateTime;
+        this.description = description;
+        this.calories = calories;
         this.id = id;
     }
 
