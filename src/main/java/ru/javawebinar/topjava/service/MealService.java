@@ -22,7 +22,6 @@ import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class MealService {
 
-    @Autowired
     private MealRepository repository;
 
     @Autowired
@@ -46,16 +45,15 @@ public class MealService {
         return checkNotFoundWithId(repository.get(userId, id), id);
     }
 
-    public List<MealTo> getAll(int userId) {
-        return MealsUtil.getTos(repository.getAll(userId), SecurityUtil.authUserCaloriesPerDay());
+    public List<Meal> getAll(int userId) {
+        return repository.getAll(userId, LocalDate.MIN, LocalDate.MAX);
     }
 
-    public List<MealTo> getAll(int userId, LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
-        return MealsUtil.getFilteredTos(
-                repository.getAll(userId).stream()
-                        .filter(meal -> DateTimeUtil.isBetween(meal.getDate(), startDate, endDate))
-                        .collect(Collectors.toList()),
-                SecurityUtil.authUserCaloriesPerDay(), startTime, endTime);
+    public List<Meal> getAll(int userId, LocalDate startDate, LocalDate endDate) {
+        startDate = startDate == null ? LocalDate.MIN : startDate;
+        endDate = endDate == null ? LocalDate.MAX : endDate;
+
+        return repository.getAll(userId, startDate, endDate);
     }
 
 }

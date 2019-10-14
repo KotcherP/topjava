@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.util.DateTimeUtil;
 import ru.javawebinar.topjava.util.MealsUtil;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,19 +32,11 @@ public class InMemoryMealRepository implements MealRepository {
 
         if (meal.isNew()) {
             meal.setId(counter.incrementAndGet());
-            meal.setUserID(userId);
+            meal.setUserId(userId);
 
             log.info("user id {}, save {}", userId, meal);
 
-            Map<Integer, Meal> entryMeals = repository.get(userId);
-
-            if (entryMeals == null) {
-                repository.put(userId, new HashMap<Integer, Meal>() {{
-                    put(meal.getId(), meal);
-                }});
-            } else {
-                entryMeals.put(meal.getId(), meal);
-            }
+            repository.computeIfAbsent(userId, k -> new HashMap<>()).put(meal.getId(), meal);
 
             return meal;
         }
@@ -79,11 +73,12 @@ public class InMemoryMealRepository implements MealRepository {
     }
 
     @Override
-    public List<Meal> getAll(int userId) {
+    public List<Meal> getAll(int userId, LocalDate startDate, LocalDate endDate) {
         log.info("user id {}, get all", userId);
-        //return repository.values();
+
         Map<Integer, Meal> entryMeals = repository.get(userId);
         return entryMeals == null ? Collections.emptyList() : entryMeals.values().stream()
+                .filter(meal -> DateTimeUtil.isBetween(meal.getDate(), startDate, endDate))
                 .sorted(Comparator.comparing(Meal::getDate).reversed())
                 .collect(Collectors.toList());
     }

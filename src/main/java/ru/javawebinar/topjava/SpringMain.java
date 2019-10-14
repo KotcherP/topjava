@@ -25,19 +25,15 @@ public class SpringMain {
 
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
 
-            mealRestController.create(new Meal(LocalDateTime.of(2015, Month.MAY, 15, 10, 0), "Завтрак", 500));
-
-//            mealRestController.getAll(LocalDate.of(2015, 05, 13),
-//                    null,
-//                    LocalTime.of(10, 0),
-//                    LocalTime.of(11, 0)
-//            ).forEach(System.out::println);
+            mealRestController.create(new Meal(LocalDateTime.of(2015, Month.MAY, 15, 10, 0), "Завтрак user 1", 500));
 
             mealRestController.getAll(LocalDate.of(2015, 05, 13),
                     null,
                     null,
-                    null
+                    LocalTime.of(11,0)
             ).forEach(System.out::println);
+
+            //System.out.println(adminUserController.getByMail("email2@mail.ru")); ;
 
         }
     }
