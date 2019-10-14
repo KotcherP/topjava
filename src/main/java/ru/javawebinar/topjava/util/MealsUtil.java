@@ -18,17 +18,17 @@ public class MealsUtil {
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
     public static final List<Meal> MEALS = Arrays.asList(
-            new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак user 1", 500),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Обед user 1", 500),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 31, 10, 0), "Обед user 1", 300),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 31, 13, 0), "Ужин user 1", 2100)
+            new Meal(LocalDateTime.of(2019, Month.OCTOBER, 12, 6, 0), "Завтрак user 1", 500),
+            new Meal(LocalDateTime.of(2019, Month.OCTOBER, 12, 9, 0), "Обед user 1", 500),
+            new Meal(LocalDateTime.of(2019, Month.OCTOBER, 13, 11, 0), "Обед user 1", 300),
+            new Meal(LocalDateTime.of(2019, Month.OCTOBER, 13, 13, 0), "Ужин user 1", 2100)
     );
 
     public static final List<Meal> MEALS2 = Arrays.asList(
-            new Meal(LocalDateTime.of(2015, Month.MAY, 20, 10, 0), "Завтрак user 2", 500),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 21, 13, 0), "Обед user 2", 2100),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак user 2", 500),
-            new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Обед user 2", 500)
+            new Meal(LocalDateTime.of(2019, Month.MAY, 20, 10, 0), "Завтрак user 2", 500),
+            new Meal(LocalDateTime.of(2019, Month.MAY, 21, 13, 0), "Обед user 2", 2100),
+            new Meal(LocalDateTime.of(2019, Month.MAY, 30, 10, 0), "Завтрак user 2", 500),
+            new Meal(LocalDateTime.of(2019, Month.MAY, 30, 10, 0), "Обед user 2", 500)
     );
 
     public static List<MealTo> getTos(Collection<Meal> meals, int caloriesPerDay) {
