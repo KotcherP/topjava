@@ -32,7 +32,6 @@ public class InMemoryMealRepository implements MealRepository {
 
         if (meal.isNew()) {
             meal.setId(counter.incrementAndGet());
-            meal.setUserId(userId);
 
             log.info("user id {}, save {}", userId, meal);
 
@@ -74,11 +73,21 @@ public class InMemoryMealRepository implements MealRepository {
 
     @Override
     public List<Meal> getAll(int userId, LocalDate startDate, LocalDate endDate) {
-        log.info("user id {}, get all", userId);
+        log.info("user id {}, get all startDate {} and endDate {} ", userId,startDate,endDate);
 
         Map<Integer, Meal> entryMeals = repository.get(userId);
         return entryMeals == null ? Collections.emptyList() : entryMeals.values().stream()
                 .filter(meal -> DateTimeUtil.isBetween(meal.getDate(), startDate, endDate))
+                .sorted(Comparator.comparing(Meal::getDate).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Meal> getAll(int userId) {
+        log.info("user id {}, get all ", userId);
+
+        Map<Integer, Meal> entryMeals = repository.get(userId);
+        return entryMeals == null ? Collections.emptyList() : entryMeals.values().stream()
                 .sorted(Comparator.comparing(Meal::getDate).reversed())
                 .collect(Collectors.toList());
     }

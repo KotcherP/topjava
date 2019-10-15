@@ -22,7 +22,7 @@ public class UserServlet extends HttpServlet {
         if(id != null){
             SecurityUtil.setAuthUserId(Integer.parseInt(id));
         }
-        //request.getRequestDispatcher("/users.jsp").forward(request, response);
-        request.getRequestDispatcher("/index.html").forward(request, response);
+        //request.getRequestDispatcher("/index.html").forward(request, response);
+        response.sendRedirect("meals");
     }
 }
