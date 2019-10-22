@@ -20,6 +20,7 @@ import java.util.List;
 import static ru.javawebinar.topjava.UserTestData.*;
 
 @ContextConfiguration({
+        "classpath:spring/spring-basis.xml",
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
 })
